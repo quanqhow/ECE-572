@@ -44,14 +44,14 @@ public class average_disk implements PlugInFilter {
 					//Get the row pixel value where the kernel should be applied
 					int uActual;
 
-					//If the kernel is too far left, then go to the right side of the image
+					//If the kernel is too far left, then mirror the left edge
 					if(u+m < 0){
-						uActual = u+m+imgWidth;
+						uActual = u-m;
 					}
 
-					//If the kernel is too far right, then go to the left side of the image
+					//If the kernel is too far right, then go to the right edge
 					else if(u+m > imgWidth){
-						uActual = u+m-imgWidth;
+						uActual = u-m;
 					}
 
 					//Else, just get the pixel at the current kernel space
@@ -63,10 +63,10 @@ public class average_disk implements PlugInFilter {
 						//Same process as the row pixel but for the column
 						int vActual;
 						if(v+n < 0){
-							vActual = v+n+imgHeight;
+							vActual = v-n;
 						}
 						else if(v+n > imgHeight){
-							vActual = v+n-imgHeight;
+							vActual = v-n;
 						}
 						else{
 							vActual = v+n;
